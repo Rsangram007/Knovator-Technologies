@@ -31,7 +31,7 @@ app.post("/createpost", authenticate, async (req, res) => {
 app.get("/getAllpost", authenticate, async (req, res) => {
   try {
     const posts = await Post.find({ createdBy: req.user._id });
-    res.status(200).json(posts);
+    res.status(200).json({TotalPost:posts.length,AllPost:posts});
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal server error' });
